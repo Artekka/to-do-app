@@ -7,7 +7,7 @@ export function TodoCard(props) {
             <p> {todo.input}</p>
 
             <div className="todo-buttons">
-                <button disabled={todo.complete}>
+                <button>
                     <h6>Done</h6>
                 </button>
                 <button>
