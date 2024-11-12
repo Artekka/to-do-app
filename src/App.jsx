@@ -19,6 +19,9 @@ function App() {
     { input: 'Initial test todo item', complete: true }
   ]);
 
+  //?? Use tab name or tab index? Does this matter on a larger scale?
+  const [selectedTab, setSelectedTab] = useState('Open')
+
   //handler functions for actions
   function handleTodoAdd(newTodo) {
     // addEventListener(click) to button?
@@ -42,7 +45,7 @@ function App() {
   return (
     <>
       <Header todos={todos} />
-      <Tabs todos={todos} />
+      <Tabs todos={todos} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <TodoList todos={todos} />
       <TodoInput handleTodoAdd={handleTodoAdd} />
     </>
