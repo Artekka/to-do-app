@@ -18,7 +18,10 @@ export function TodoList(props) {
                     return (
                         <TodoCard
                             key={todoIndex}
-                            todo={todo} />
+                            {...props}
+                            todo={todo}
+                            todoIndex={todoIndex}
+                            />
                     )
                 })}
             </>
