@@ -20,7 +20,7 @@ function App() {
   ]);
 
   //?? Use tab name or tab index? Does this matter on a larger scale?
-  const [selectedTab, setSelectedTab] = useState('Open')
+  const [selectedTab, setSelectedTab] = useState('All')
 
   //handler functions for actions
   function handleTodoAdd(newTodo) {
@@ -35,7 +35,12 @@ function App() {
   }
 
   function handleTodoComplete(index) {
-    let newTodoList = []
+    let newTodoList = [...todos]
+    let completedTodo = todos[index]
+    completedTodo['complete'] = true
+    newTodoList[index] = completedTodo
+
+    setTodos(newTodoList);
   }
 
   function handleTodoDelete(index) {
@@ -49,10 +54,17 @@ function App() {
   return (
     <>
       <Header todos={todos} />
-      <Tabs todos={todos} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      <TodoList todos={todos} selectedTab={selectedTab} handleTodoDelete
-        ={handleTodoDelete} />
-      <TodoInput handleTodoAdd={handleTodoAdd} />
+      <Tabs
+        todos={todos}
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab} />
+      <TodoList
+        todos={todos}
+        selectedTab={selectedTab}
+        handleTodoDelete={handleTodoDelete}
+        handleTodoComplete={handleTodoComplete} />
+      <TodoInput
+        handleTodoAdd={handleTodoAdd} />
     </>
   )
 }
