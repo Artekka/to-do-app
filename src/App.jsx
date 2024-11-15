@@ -16,7 +16,7 @@ function App() {
   // ]
   
   const [todos, setTodos] = useState([
-    { input: 'Initial test todo item', complete: true }
+    { input: 'Welcome to Netlify!', complete: true }
   ]);
 
   //?? Use tab name or tab index? Does this matter on a larger scale?
