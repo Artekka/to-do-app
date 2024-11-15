@@ -4,7 +4,7 @@ import { Header } from './components/Header'
 import { Tabs } from './components/Tabs'
 import { TodoList } from './components/TodoList'
 import { TodoInput } from './components/TodoInput'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
 
@@ -31,7 +31,7 @@ function App() {
     const newTodoList = [...todos, { input: newTodo, complete: false }]
     
     setTodos(newTodoList)
-
+    handleSaveData(newTodoList);
   }
 
   function handleTodoComplete(index) {
@@ -41,6 +41,7 @@ function App() {
     newTodoList[index] = completedTodo
 
     setTodos(newTodoList);
+    handleSaveData(newTodoList);
   }
 
   function handleTodoDelete(index) {
@@ -49,7 +50,20 @@ function App() {
     })
 
     setTodos(newTodoList)
+    handleSaveData(newTodoList);
   }
+
+  function handleSaveData(currentTodos) {
+    localStorage.setItem('sick-todo-app', JSON.stringify({ todos: currentTodos }));
+  }
+
+  useEffect(() => {
+    if (!localStorage || !localStorage.getItem('sick-todo-app')) {
+      return
+    } //guard clause in case localStorage or getItem value is not available to us
+
+    let db = JSON.parse(localStorage.getItem('sick-todo-app'))
+    }, [])
 
   return (
     <>
