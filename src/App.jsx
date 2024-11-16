@@ -21,7 +21,7 @@ function App() {
       
       if (db) {
         const parsedData = JSON.parse(db);
-        if (parsedData.todos && Array.isArray(parsedData.todos)) {
+        if (parsedData.todos && parsedData.todos.length > 0 && Array.isArray(parsedData.todos)) {
           return parsedData.todos;
         }
       }
